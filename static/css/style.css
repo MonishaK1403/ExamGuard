@@ -1,0 +1,2290 @@
+/* ==============================================================
+   ExamGuard — shared styles
+   Design concept: an official examination hall crossed with a
+   monitoring console. Quiet, paper-toned pages for forms and
+   records; the live event log is the one place that gets to look
+   like an active instrument (dark, monospaced, blinking status).
+   ============================================================== */
+
+:root {
+  --ink: #12161f;
+  --ink-soft: #1c2333;
+  --paper: #f6f4ee;
+  --paper-raised: #ffffff;
+  --rule: #dcd8cc;
+  --slate: #4a5064;
+  --slate-soft: #7c8194;
+
+  --signal: #2f5d9f;
+  --signal-dark: #234874;
+  --confirm: #3c7a5a;
+  --warn: #b4791e;
+  --danger: #a83a3a;
+
+  --serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  --sans: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* -------------------- NAVBAR -------------------- */
+
+.navbar {
+  background: var(--ink);
+  color: #eceef2;
+  padding: 18px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 3px solid var(--signal);
+}
+
+.navbar-brand {
+  font-family: var(--serif);
+  font-size: 20px;
+  letter-spacing: 0.3px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-dot {
+  width: 9px;
+  height: 9px;
+  background: var(--signal);
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+}
+
+.navbar-links a {
+  color: #cfd4e0;
+  text-decoration: none;
+}
+
+.navbar-links a:hover {
+  color: #ffffff;
+}
+
+/* -------------------- LAYOUT -------------------- */
+
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+.page-narrow {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 64px 24px 80px;
+}
+
+/* -------------------- CARD -------------------- */
+
+.card {
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--signal);
+  border-radius: 4px;
+  padding: 32px;
+}
+
+.card + .card {
+  margin-top: 24px;
+}
+
+h1, h2, h3 {
+  font-family: var(--serif);
+  font-weight: normal;
+  margin: 0 0 6px;
+  color: var(--ink);
+}
+
+h1 { font-size: 28px; }
+h2 { font-size: 21px; }
+h3 { font-size: 17px; }
+
+.subtitle {
+  color: var(--slate-soft);
+  font-size: 14px;
+  margin: 0 0 28px;
+}
+
+/* -------------------- FORMS -------------------- */
+
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--slate);
+  margin: 18px 0 6px;
+}
+
+label:first-of-type { margin-top: 0; }
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  font-family: var(--sans);
+  font-size: 15px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--signal);
+  box-shadow: 0 0 0 3px rgba(47, 93, 159, 0.15);
+}
+
+/* -------------------- BUTTONS -------------------- */
+
+.btn {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 11px 22px;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+
+.btn-primary {
+  background: var(--signal);
+  color: #ffffff;
+}
+.btn-primary:hover { background: var(--signal-dark); }
+.btn-primary:disabled {
+  background: #b9c3d6;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--slate);
+  border-color: var(--rule);
+}
+.btn-secondary:hover { border-color: var(--slate-soft); }
+
+.btn-danger {
+  background: var(--danger);
+  color: #ffffff;
+}
+.btn-danger:hover { background: #8c2f2f; }
+
+.btn-block { width: 100%; margin-top: 24px; }
+
+.btn-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* -------------------- BANNERS -------------------- */
+
+.banner {
+  padding: 12px 16px;
+  border-radius: 3px;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.banner-error {
+  background: #fbeaea;
+  color: var(--danger);
+  border: 1px solid #e6bcbc;
+}
+
+.banner-success {
+  background: #eaf3ee;
+  color: var(--confirm);
+  border: 1px solid #bcdccb;
+}
+
+/* -------------------- STATUS INDICATORS -------------------- */
+
+.status-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  padding: 6px 0;
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.dot-neutral { background: var(--slate-soft); }
+.dot-good { background: var(--confirm); }
+.dot-warn { background: var(--warn); }
+.dot-bad { background: var(--danger); }
+
+.status-label {
+  color: var(--slate);
+  min-width: 150px;
+}
+
+.status-value { font-weight: 600; }
+
+/* -------------------- TABLE -------------------- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+th {
+  text-align: left;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--slate-soft);
+  font-weight: 600;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--rule);
+}
+
+td {
+  padding: 10px;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--mono);
+  font-size: 13px;
+}
+
+.badge {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+
+.badge-progress { background: #e8eef8; color: var(--signal-dark); }
+.badge-paused { background: #f8f0e2; color: var(--warn); }
+.badge-submitted { background: #eaf3ee; color: var(--confirm); }
+
+/* -------------------- EVENT CONSOLE -------------------- */
+/* The one deliberately "loud" element on the site: a live
+   terminal-style log, distinct from the paper-toned forms. */
+
+.console {
+  background: var(--ink);
+  color: #b7d3ff;
+  font-family: var(--mono);
+  font-size: 13px;
+  border-radius: 4px;
+  padding: 16px;
+  height: 190px;
+  overflow-y: auto;
+}
+
+.console-line {
+  padding: 2px 0;
+  color: #a9b4c9;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.console-line .t {
+  color: #7a86a3;
+  margin-right: 8px;
+}
+
+.console-line.flag {
+  color: #ff9f9f;
+}
+
+/* -------------------- MISC -------------------- */
+
+.text-link {
+  color: var(--signal);
+}
+
+.helper-text {
+  color: var(--slate-soft);
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.photo-preview {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 4px;
+  border: 1px solid var(--rule);
+  margin-top: 10px;
+}
+
+.candidate-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 4px;
+  object-fit: cover;
+  border: 1px solid var(--rule);
+}
+
+.identity-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+/* =========================================================
+   EXAMGUARD - REGISTRATION PAGE
+   ========================================================= */
+
+.register-page {
+    min-height: 100vh;
+    width: 100%;
+    background: #f4f7fb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.register-container {
+    width: min(1000px, 100%);
+    min-height: 700px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: #ffffff;
+    border-radius: 0 28px 28px 0;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(31, 61, 120, 0.12);
+}
+
+
+/* =========================
+   LEFT SIDE
+   ========================= */
+
+.register-left {
+    position: relative;
+    background: linear-gradient(
+        145deg,
+        #2448b8 0%,
+        #3159c9 100%
+    );
+    color: white;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.register-left::before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.07);
+    top: -105px;
+    right: -100px;
+}
+
+.register-left::after {
+    content: "";
+    position: absolute;
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.045);
+    bottom: -100px;
+    left: -90px;
+}
+
+.left-content {
+    position: relative;
+    z-index: 2;
+    padding: 60px 48px;
+    max-width: 480px;
+}
+
+.brand {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.8px;
+    margin-bottom: 55px;
+}
+
+.brand span {
+    color: #ffffff;
+}
+
+.brand {
+    color: #d9e4ff;
+}
+
+.left-content h1 {
+    margin: 0 0 24px;
+    color: #ffffff;
+    font-size: 43px;
+    line-height: 1.1;
+    font-weight: 800;
+    letter-spacing: -1.2px;
+}
+
+.left-content > p {
+    margin: 0;
+    max-width: 410px;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.features {
+    margin-top: 42px;
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    color: #ffffff;
+    font-size: 15px;
+}
+
+.feature-icon {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+/* =========================
+   RIGHT SIDE
+   ========================= */
+
+.register-right {
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    overflow-y: auto;
+}
+
+.register-form-wrapper {
+    width: 100%;
+    max-width: 440px;
+    padding: 55px 58px;
+    box-sizing: border-box;
+}
+
+.register-form-wrapper h2 {
+    margin: 0;
+    color: #101828;
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -0.6px;
+}
+
+.register-subtitle {
+    margin: 8px 0 30px;
+    color: #7b8798;
+    font-size: 14px;
+}
+
+
+/* =========================
+   ERROR MESSAGE
+   ========================= */
+
+.error-message {
+    padding: 11px 14px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background: #fff1f1;
+    color: #d92d20;
+    border: 1px solid #ffd0d0;
+    font-size: 13px;
+}
+
+
+/* =========================
+   FORM
+   ========================= */
+
+.form-group {
+    margin-bottom: 19px;
+}
+
+.form-group label,
+.photo-section > label {
+    display: block;
+    margin-bottom: 8px;
+    color: #344054;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    height: 48px;
+    padding: 0 15px;
+    border: 1px solid #d0d5dd;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #101828;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+    transition: 0.2s ease;
+}
+
+.form-group input::placeholder {
+    color: #98a2b3;
+}
+
+.form-group input:focus {
+    border-color: #3159c9;
+    box-shadow: 0 0 0 3px rgba(49, 89, 201, 0.10);
+}
+
+
+/* =========================
+   PASSWORD ERROR
+   ========================= */
+
+.field-error {
+    margin: 6px 0 0;
+    color: #d92d20;
+    font-size: 12px;
+}
+
+
+/* =========================
+   CAMERA
+   ========================= */
+
+.photo-section {
+    margin-top: 24px;
+    margin-bottom: 22px;
+}
+
+.photo-info {
+    margin: -2px 0 12px;
+    color: #98a2b3;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.camera-box {
+    position: relative;
+    width: 100%;
+    height: 190px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #eef2f7;
+    border: 1px solid #d0d5dd;
+}
+
+.camera-box video,
+.camera-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.camera-buttons {
+    display: flex;
+    gap: 9px;
+    margin-top: 10px;
+}
+
+.camera-btn {
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #344054;
+    padding: 9px 15px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.camera-btn:hover:not(:disabled) {
+    border-color: #3159c9;
+    color: #3159c9;
+}
+
+.camera-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.photo-status {
+    min-height: 17px;
+    margin: 8px 0 0;
+    color: #667085;
+    font-size: 12px;
+}
+
+
+/* =========================
+   REGISTER BUTTON
+   ========================= */
+
+.register-btn {
+    width: 100%;
+    height: 48px;
+    border: none;
+    border-radius: 8px;
+    background: #3159c9;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.register-btn:hover:not(:disabled) {
+    background: #2448b8;
+    transform: translateY(-1px);
+}
+
+.register-btn:disabled {
+    background: #aebbdc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* =========================
+   LOGIN LINK
+   ========================= */
+
+.login-link {
+    margin: 22px 0 0;
+    text-align: center;
+    color: #667085;
+    font-size: 13px;
+}
+
+.login-link a {
+    color: #3159c9;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 850px) {
+
+    .register-container {
+        grid-template-columns: 1fr;
+        border-radius: 0;
+        min-height: 100vh;
+    }
+
+    .register-left {
+        min-height: 360px;
+    }
+
+    .left-content {
+        padding: 45px 35px;
+    }
+
+    .brand {
+        margin-bottom: 35px;
+    }
+
+    .left-content h1 {
+        font-size: 34px;
+    }
+
+    .features {
+        margin-top: 28px;
+    }
+
+    .register-form-wrapper {
+        padding: 45px 35px;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .left-content {
+        padding: 35px 25px;
+    }
+
+    .left-content h1 {
+        font-size: 30px;
+    }
+
+    .register-form-wrapper {
+        padding: 35px 24px;
+    }
+
+    .camera-buttons {
+        flex-direction: column;
+    }
+
+    .camera-btn {
+        width: 100%;
+    }
+}
+/* =========================================================
+   EXAMGUARD - MODERN LOGIN PAGE
+   ========================================================= */
+
+.login-page {
+    min-height: calc(100vh - 64px);
+    width: 100%;
+    padding: 45px 25px;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at 10% 20%,
+            rgba(78, 110, 220, 0.12),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(88, 166, 255, 0.12),
+            transparent 30%
+        ),
+        #f5f7fc;
+}
+
+
+/* =========================
+   MAIN CARD
+   ========================= */
+
+.login-card {
+    width: min(980px, 100%);
+    min-height: 590px;
+
+    display: grid;
+    grid-template-columns: 43% 57%;
+
+    background: #ffffff;
+
+    border-radius: 24px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 25px 70px rgba(35, 58, 110, 0.14);
+}
+
+
+/* =========================
+   LEFT WELCOME
+   ========================= */
+
+.login-welcome {
+    position: relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            #3159c9,
+            #243f9e
+        );
+
+    color: white;
+
+    overflow: hidden;
+}
+
+.login-welcome::before {
+    content: "";
+
+    position: absolute;
+
+    width: 310px;
+    height: 310px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.07);
+
+    top: -150px;
+    right: -120px;
+}
+
+.login-welcome::after {
+    content: "";
+
+    position: absolute;
+
+    width: 230px;
+    height: 230px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    bottom: -100px;
+    left: -100px;
+}
+
+.welcome-content {
+    position: relative;
+    z-index: 2;
+
+    height: 100%;
+
+    padding: 48px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+/* =========================
+   LOGO
+   ========================= */
+
+.login-logo,
+.mobile-logo {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 22px;
+    font-weight: 800;
+
+    letter-spacing: -0.4px;
+}
+
+.login-logo {
+    position: absolute;
+    top: 35px;
+    left: 48px;
+}
+
+.logo-dot {
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: #7ea4ff;
+
+    display: inline-block;
+}
+
+
+/* =========================
+   WELCOME ICON
+   ========================= */
+
+.welcome-icon {
+    width: 62px;
+    height: 62px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    background: rgba(255, 255, 255, 0.13);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    font-size: 27px;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================
+   WELCOME TEXT
+   ========================= */
+
+.welcome-content h1 {
+    margin: 0 0 18px;
+
+    font-size: 45px;
+
+    line-height: 1.05;
+
+    letter-spacing: -1.5px;
+
+    color: #ffffff;
+}
+
+.welcome-content > p {
+    margin: 0;
+
+    max-width: 340px;
+
+    color: rgba(255, 255, 255, 0.82);
+
+    font-size: 15px;
+
+    line-height: 1.75;
+}
+
+
+/* =========================
+   SECURITY POINTS
+   ========================= */
+
+.security-points {
+    margin-top: 38px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 17px;
+}
+
+.security-point {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    color: rgba(255, 255, 255, 0.9);
+
+    font-size: 13px;
+}
+
+.security-point span {
+    width: 22px;
+    height: 22px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255, 255, 255, 0.14);
+
+    font-size: 11px;
+}
+
+
+/* =========================
+   RIGHT FORM
+   ========================= */
+
+.login-form-section {
+    background: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-form-container {
+    width: 100%;
+    max-width: 390px;
+
+    padding: 55px 45px;
+
+    box-sizing: border-box;
+}
+
+.mobile-logo {
+    display: none;
+
+    color: #1d2939;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================
+   FORM HEADER
+   ========================= */
+
+.login-form-container h2 {
+    margin: 0;
+
+    color: #101828;
+
+    font-size: 30px;
+
+    font-weight: 800;
+
+    letter-spacing: -0.7px;
+}
+
+.login-description {
+    margin: 9px 0 34px;
+
+    color: #98a2b3;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   ERROR
+   ========================= */
+
+.login-error {
+    padding: 11px 13px;
+
+    margin-bottom: 20px;
+
+    border-radius: 8px;
+
+    background: #fff1f1;
+
+    border: 1px solid #ffd4d4;
+
+    color: #d92d20;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   FORM FIELDS
+   ========================= */
+
+.login-field {
+    margin-bottom: 22px;
+}
+
+.login-field label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #344054;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+.password-label {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+}
+
+.password-label a {
+    color: #3159c9;
+
+    font-size: 12px;
+
+    text-decoration: none;
+}
+
+.password-label a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   INPUT
+   ========================= */
+
+.input-wrapper {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+
+    left: 15px;
+
+    color: #98a2b3;
+
+    font-size: 14px;
+
+    z-index: 1;
+}
+
+.input-wrapper input {
+    width: 100%;
+
+    height: 50px;
+
+    padding: 0 45px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #d0d5dd;
+
+    border-radius: 9px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #101828;
+
+    font-size: 14px;
+
+    transition: all 0.2s ease;
+}
+
+.input-wrapper input::placeholder {
+    color: #aab2c0;
+}
+
+.input-wrapper input:focus {
+    border-color: #3159c9;
+
+    box-shadow:
+        0 0 0 3px rgba(49, 89, 201, 0.10);
+}
+
+
+/* =========================
+   PASSWORD TOGGLE
+   ========================= */
+
+.password-toggle {
+    position: absolute;
+
+    right: 12px;
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    padding: 5px;
+
+    opacity: 0.65;
+}
+
+.password-toggle:hover {
+    opacity: 1;
+}
+
+
+/* =========================
+   REMEMBER
+   ========================= */
+
+.remember-row {
+    margin: -3px 0 25px;
+}
+
+.remember-label {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #667085;
+
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+.remember-label input {
+    width: 15px;
+    height: 15px;
+
+    accent-color: #3159c9;
+}
+
+
+/* =========================
+   SIGN IN BUTTON
+   ========================= */
+
+.login-submit {
+    width: 100%;
+
+    height: 51px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #3159c9,
+            #2448b8
+        );
+
+    color: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 18px rgba(49, 89, 201, 0.20);
+
+    transition: all 0.2s ease;
+}
+
+.login-submit:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 11px 24px rgba(49, 89, 201, 0.26);
+}
+
+.login-submit:active {
+    transform: translateY(0);
+}
+
+.login-submit .arrow {
+    font-size: 19px;
+
+    line-height: 1;
+}
+
+
+/* =========================
+   REGISTER
+   ========================= */
+
+.register-prompt {
+    margin-top: 25px;
+
+    text-align: center;
+
+    font-size: 13px;
+
+    color: #98a2b3;
+}
+
+.register-prompt a {
+    margin-left: 4px;
+
+    color: #3159c9;
+
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+.register-prompt a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   FOOTER
+   ========================= */
+
+.login-footer {
+    margin-top: 32px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #edf0f5;
+
+    text-align: center;
+
+    color: #b0b7c3;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 800px) {
+
+    .login-page {
+        padding: 20px;
+    }
+
+    .login-card {
+        grid-template-columns: 1fr;
+
+        max-width: 520px;
+    }
+
+    .login-welcome {
+        min-height: 300px;
+    }
+
+    .welcome-content {
+        padding: 40px;
+    }
+
+    .login-logo {
+        display: none;
+    }
+
+    .welcome-icon {
+        display: none;
+    }
+
+    .welcome-content h1 {
+        font-size: 35px;
+    }
+
+    .security-points {
+        margin-top: 25px;
+    }
+
+    .login-form-container {
+        padding: 45px 40px;
+    }
+
+    .mobile-logo {
+        display: flex;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .login-page {
+        padding: 0;
+    }
+
+    .login-card {
+        min-height: 100vh;
+
+        border-radius: 0;
+    }
+
+    .login-welcome {
+        min-height: 270px;
+    }
+
+    .welcome-content {
+        padding: 30px;
+    }
+
+    .welcome-content h1 {
+        font-size: 31px;
+    }
+
+    .welcome-content > p {
+        font-size: 14px;
+    }
+
+    .security-points {
+        gap: 12px;
+    }
+
+    .login-form-container {
+        padding: 35px 25px;
+    }
+}
+/* =========================================================
+   EXAMGUARD - MODERN CANDIDATE DASHBOARD
+   ========================================================= */
+
+.dashboard-page {
+    width: min(1120px, calc(100% - 50px));
+    margin: 0 auto;
+    padding: 45px 0 60px;
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   DASHBOARD HEADER
+   ========================= */
+
+.dashboard-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 32px;
+}
+
+.dashboard-label,
+.card-label {
+    display: block;
+    margin: 0 0 8px;
+    color: #3159c9;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+}
+
+.dashboard-header h1 {
+    margin: 0;
+    color: #172033;
+    font-size: 34px;
+    line-height: 1.15;
+    font-weight: 800;
+    letter-spacing: -0.8px;
+}
+
+.dashboard-subtitle {
+    margin: 9px 0 0;
+    color: #7b8798;
+    font-size: 14px;
+}
+
+.dashboard-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 9px 14px;
+
+    border: 1px solid #dbe7dc;
+    border-radius: 30px;
+
+    background: #f6fbf7;
+
+    color: #34714a;
+    font-size: 12px;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #42a866;
+}
+
+
+/* =========================
+   MAIN GRID
+   ========================= */
+
+.dashboard-main-grid {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 22px;
+    margin-bottom: 22px;
+}
+
+
+/* =========================
+   COMMON CARD
+   ========================= */
+
+.profile-card,
+.exam-start-card,
+.sessions-card {
+    background: #ffffff;
+    border: 1px solid #e8ebf1;
+    border-radius: 18px;
+    box-shadow: 0 8px 30px rgba(28, 43, 76, 0.06);
+}
+
+
+/* =========================
+   PROFILE CARD
+   ========================= */
+
+.profile-card {
+    overflow: hidden;
+}
+
+.profile-card-header {
+    padding: 20px 25px;
+    border-bottom: 1px solid #edf0f4;
+}
+
+.profile-content {
+    padding: 27px 25px 30px;
+    text-align: center;
+}
+
+.candidate-photo-wrapper {
+    position: relative;
+    width: 92px;
+    height: 92px;
+    margin: 0 auto 17px;
+}
+
+.candidate-photo {
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #eef3ff;
+    box-sizing: border-box;
+}
+
+.candidate-photo-placeholder {
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(135deg, #3159c9, #6888e0);
+
+    color: #ffffff;
+    font-size: 34px;
+    font-weight: 800;
+
+    border: 4px solid #eef3ff;
+    box-sizing: border-box;
+}
+
+.verified-badge {
+    position: absolute;
+    right: -1px;
+    bottom: 2px;
+
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+
+    background: #3159c9;
+    color: #ffffff;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.profile-content h2 {
+    margin: 0;
+    color: #172033;
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.candidate-email {
+    margin: 6px 0 0;
+    color: #8993a3;
+    font-size: 13px;
+}
+
+.profile-divider {
+    height: 1px;
+    background: #edf0f4;
+    margin: 24px 0 19px;
+}
+
+.profile-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+    margin-top: 15px;
+}
+
+.profile-icon {
+    flex: 0 0 auto;
+
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: #f0f4ff;
+    color: #3159c9;
+
+    font-size: 13px;
+}
+
+.profile-item small {
+    display: block;
+    color: #98a2b3;
+    font-size: 11px;
+    margin-bottom: 2px;
+}
+
+.profile-item strong {
+    display: block;
+    color: #344054;
+    font-size: 13px;
+}
+
+
+/* =========================
+   START EXAM CARD
+   ========================= */
+
+.exam-start-card {
+    position: relative;
+    overflow: hidden;
+    padding: 34px 36px;
+}
+
+.exam-start-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 260px;
+    height: 260px;
+
+    border-radius: 50%;
+
+    background: #f2f5ff;
+
+    right: -110px;
+    top: -120px;
+
+    z-index: 0;
+}
+
+.exam-card-top,
+.exam-start-card h2,
+.exam-start-card > p,
+.exam-info-row,
+.start-exam-btn,
+.exam-note {
+    position: relative;
+    z-index: 1;
+}
+
+.exam-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.exam-icon {
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+
+    background: #edf2ff;
+    color: #3159c9;
+
+    font-size: 24px;
+}
+
+.ready-badge {
+    padding: 6px 11px;
+
+    border-radius: 20px;
+
+    background: #effaf2;
+    color: #32804b;
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+}
+
+.exam-start-card h2 {
+    margin: 28px 0 11px;
+
+    color: #172033;
+
+    font-size: 27px;
+    line-height: 1.2;
+
+    font-weight: 800;
+
+    letter-spacing: -0.5px;
+}
+
+.exam-start-card > p {
+    max-width: 650px;
+
+    margin: 0;
+
+    color: #7b8798;
+
+    font-size: 14px;
+    line-height: 1.75;
+}
+
+
+/* =========================
+   EXAM INFO
+   ========================= */
+
+.exam-info-row {
+    display: flex;
+    gap: 12px;
+
+    margin: 28px 0;
+}
+
+.exam-info {
+    min-width: 145px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 12px 14px;
+
+    border: 1px solid #edf0f5;
+    border-radius: 11px;
+
+    background: #fafbfc;
+}
+
+.info-icon {
+    width: 31px;
+    height: 31px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: #edf2ff;
+    color: #3159c9;
+
+    font-size: 12px;
+}
+
+.exam-info small {
+    display: block;
+
+    color: #98a2b3;
+
+    font-size: 10px;
+
+    margin-bottom: 2px;
+}
+
+.exam-info strong {
+    display: block;
+
+    color: #344054;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   START BUTTON
+   ========================= */
+
+.start-exam-btn {
+    width: fit-content;
+
+    min-width: 205px;
+
+    height: 48px;
+
+    padding: 0 18px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 18px;
+
+    border-radius: 9px;
+
+    background: linear-gradient(
+        135deg,
+        #3159c9,
+        #2448b8
+    );
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    box-shadow: 0 8px 20px rgba(49, 89, 201, 0.18);
+
+    transition: all 0.2s ease;
+}
+
+.start-exam-btn span {
+    font-size: 19px;
+}
+
+.start-exam-btn:hover {
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 11px 25px rgba(49, 89, 201, 0.25);
+}
+
+.exam-note {
+    margin: 12px 0 0;
+
+    color: #a1a9b5;
+
+    font-size: 11px;
+}
+
+
+/* =========================
+   SESSIONS
+   ========================= */
+
+.sessions-card {
+    overflow: hidden;
+}
+
+.sessions-header {
+    padding: 24px 28px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    border-bottom: 1px solid #edf0f4;
+}
+
+.sessions-header h2 {
+    margin: 0;
+
+    color: #172033;
+
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.session-count {
+    padding: 6px 11px;
+
+    border-radius: 20px;
+
+    background: #f2f5fb;
+
+    color: #667085;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.sessions-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.sessions-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.sessions-table th {
+    padding: 14px 28px;
+
+    text-align: left;
+
+    color: #98a2b3;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.8px;
+
+    background: #fcfcfd;
+
+    border-bottom: 1px solid #edf0f4;
+}
+
+.sessions-table td {
+    padding: 17px 28px;
+
+    color: #667085;
+
+    font-size: 12px;
+
+    border-bottom: 1px solid #f0f2f5;
+
+    white-space: nowrap;
+}
+
+.sessions-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.sessions-table tbody tr:hover {
+    background: #fafbfe;
+}
+
+
+/* =========================
+   SESSION ID
+   ========================= */
+
+.session-id {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    color: #344054;
+
+    font-weight: 600;
+}
+
+.session-icon {
+    width: 27px;
+    height: 27px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 7px;
+
+    background: #f0f4ff;
+
+    color: #3159c9;
+
+    font-size: 11px;
+}
+
+
+/* =========================
+   SESSION STATUS
+   ========================= */
+
+.session-status {
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+.session-status.progress {
+    background: #eef4ff;
+    color: #3159c9;
+}
+
+.session-status.submitted {
+    background: #effaf2;
+    color: #347b4b;
+}
+
+.session-status.paused {
+    background: #fff7e8;
+    color: #a56a00;
+}
+
+.not-submitted {
+    color: #a8afb9;
+}
+
+
+/* =========================
+   EMPTY SESSIONS
+   ========================= */
+
+.empty-sessions {
+    padding: 55px 25px;
+
+    text-align: center;
+}
+
+.empty-icon {
+    width: 48px;
+    height: 48px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: #f2f5fb;
+
+    color: #8490a3;
+
+    font-size: 20px;
+}
+
+.empty-sessions h3 {
+    margin: 0;
+
+    color: #344054;
+
+    font-size: 15px;
+}
+
+.empty-sessions p {
+    margin: 7px auto 0;
+
+    max-width: 400px;
+
+    color: #98a2b3;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   SECURITY NOTICE
+   ========================= */
+
+.security-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+
+    margin-top: 22px;
+
+    padding: 17px 20px;
+
+    border: 1px solid #e4eafa;
+    border-radius: 13px;
+
+    background: #f7f9ff;
+}
+
+.security-notice-icon {
+    flex: 0 0 auto;
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: #e9efff;
+
+    font-size: 15px;
+}
+
+.security-notice strong {
+    display: block;
+
+    margin: 0 0 4px;
+
+    color: #344054;
+
+    font-size: 12px;
+}
+
+.security-notice p {
+    margin: 0;
+
+    color: #7b8798;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 900px) {
+
+    .dashboard-main-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-content {
+        display: grid;
+
+        grid-template-columns: auto 1fr;
+
+        column-gap: 22px;
+
+        text-align: left;
+
+        align-items: center;
+    }
+
+    .candidate-photo-wrapper {
+        grid-row: span 3;
+
+        margin: 0;
+    }
+
+    .profile-divider {
+        grid-column: 1 / -1;
+        width: 100%;
+    }
+
+    .profile-item {
+        margin-top: 10px;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .dashboard-page {
+        width: calc(100% - 30px);
+        padding-top: 30px;
+    }
+
+    .dashboard-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .dashboard-header h1 {
+        font-size: 28px;
+    }
+
+    .exam-start-card {
+        padding: 27px 23px;
+    }
+
+    .exam-start-card h2 {
+        font-size: 23px;
+    }
+
+    .exam-info-row {
+        flex-direction: column;
+    }
+
+    .exam-info {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .start-exam-btn {
+        width: 100%;
+    }
+
+    .sessions-header {
+        padding: 20px;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .sessions-table th,
+    .sessions-table td {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .security-notice {
+        padding: 15px;
+    }
+}
+
+
+@media (max-width: 450px) {
+
+    .profile-content {
+        display: block;
+        text-align: center;
+    }
+
+    .candidate-photo-wrapper {
+        margin: 0 auto 17px;
+    }
+
+    .profile-divider {
+        margin: 22px 0;
+    }
+
+    .profile-item {
+        text-align: left;
+    }
+
+    .dashboard-header h1 {
+        font-size: 25px;
+    }
+
+    .dashboard-subtitle {
+        line-height: 1.6;
+    }
+}
