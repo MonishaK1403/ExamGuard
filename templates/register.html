@@ -266,6 +266,7 @@ let photoCaptured = false;
 
 startCameraButton.addEventListener("click", async function () {
 
+    alert("Start Camera button is working!");
     try {
 
         cameraStream =
@@ -273,7 +274,10 @@ startCameraButton.addEventListener("click", async function () {
                 video: true
             });
 
+
         video.srcObject = cameraStream;
+        video.style.display = "block";
+preview.style.display = "none";
 
         captureButton.disabled = false;
 
@@ -317,13 +321,22 @@ captureButton.addEventListener("click", function () {
         canvas.height
     );
 
-    preview.src =
-        canvas.toDataURL("image/jpeg");
+    const photoData = canvas.toDataURL("image/jpeg");
 
-    preview.style.display = "block";
+const photoData = canvas.toDataURL("image/jpeg");
 
-    photoStatus.textContent =
-        "Saving photo...";
+preview.src = photoData;
+
+video.style.display = "none";
+
+preview.style.display = "block";
+preview.style.width = "100%";
+preview.style.height = "100%";
+preview.style.objectFit = "cover";
+preview.style.borderRadius = "10px";
+
+photoStatus.textContent =
+    "Saving photo...";
 
     canvas.toBlob(async function (blob) {
 

@@ -1,52 +1,122 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}Sign In - ExamGuard{% endblock %}
+<head>
 
-{% block content %}
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Sign In - ExamGuard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/login.css') }}">
+
+</head>
+
+
+<body>
 
 <div class="login-page">
 
-    <div class="login-card">
 
-        <!-- LEFT SECTION -->
-        <div class="login-welcome">
+    <!-- LEFT SIDE -->
 
-            <div class="welcome-content">
+    <section class="login-left">
 
-                <div class="login-logo">
-                    <span class="logo-dot"></span>
-                    ExamGuard
-                </div>
+        <div class="login-brand">
 
-                <div class="welcome-icon">
-                    🔐
-                </div>
+            <div class="brand-logo">
+                ✓
+            </div>
 
-                <h1>
-                    Welcome<br>
-                    Back!
-                </h1>
+            <div class="brand-name">
+                ExamGuard
+            </div>
 
-                <p>
-                    Sign in to continue your secure examination
-                    experience.
-                </p>
+        </div>
 
-                <div class="security-points">
 
-                    <div class="security-point">
-                        <span>✓</span>
-                        Secure examination environment
+        <div class="login-left-content">
+
+            <div class="login-label">
+                SECURE EXAMINATION PLATFORM
+            </div>
+
+            <h1>
+                A Smarter<br>
+                Way to<br>
+                Conduct Exams
+            </h1>
+
+            <p class="login-description">
+                A secure and monitored examination
+                environment designed to protect
+                academic integrity.
+            </p>
+
+
+            <div class="login-features">
+
+                <div class="login-feature">
+
+                    <div class="feature-check">
+                        ✓
                     </div>
 
-                    <div class="security-point">
-                        <span>✓</span>
-                        Intelligent exam monitoring
+                    <div class="feature-text">
+
+                        <strong>
+                            Secure Monitoring
+                        </strong>
+
+                        <span>
+                            Continuous examination monitoring
+                        </span>
+
                     </div>
 
-                    <div class="security-point">
-                        <span>✓</span>
-                        Protected candidate data
+                </div>
+
+
+                <div class="login-feature">
+
+                    <div class="feature-check">
+                        ✓
+                    </div>
+
+                    <div class="feature-text">
+
+                        <strong>
+                            Protected Sessions
+                        </strong>
+
+                        <span>
+                            Candidate activity is securely recorded
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="login-feature">
+
+                    <div class="feature-check">
+                        ✓
+                    </div>
+
+                    <div class="feature-text">
+
+                        <strong>
+                            Fair Assessments
+                        </strong>
+
+                        <span>
+                            Built for a trusted exam experience
+                        </span>
+
                     </div>
 
                 </div>
@@ -56,156 +126,206 @@
         </div>
 
 
-        <!-- RIGHT SECTION -->
-        <div class="login-form-section">
+        <div class="login-left-footer">
 
-            <div class="login-form-container">
+            <span>Trust</span>
+            <span>•</span>
+            <span>Integrity</span>
+            <span>•</span>
+            <span>Excellence</span>
 
-                <div class="mobile-logo">
-                    <span class="logo-dot"></span>
-                    ExamGuard
+        </div>
+
+    </section>
+
+
+
+    <!-- RIGHT SIDE -->
+
+    <section class="login-right">
+
+
+        <div class="login-register">
+
+            <span>
+                New here?
+            </span>
+
+            <a href="{{ url_for('register') }}">
+                Create account
+            </a>
+
+        </div>
+
+
+        <div class="login-card">
+
+
+            <div class="login-icon">
+                🔐
+            </div>
+
+
+            <h2>
+                Welcome Back
+            </h2>
+
+            <p class="login-subtitle">
+                Sign in to continue to ExamGuard.
+            </p>
+
+
+            {% if error %}
+
+            <div class="login-error">
+                {{ error }}
+            </div>
+
+            {% endif %}
+
+
+            <form method="POST"
+                  action="{{ url_for('login') }}">
+
+
+                <!-- EMAIL -->
+
+                <div class="login-field">
+
+                    <label for="email">
+                        Email address
+                    </label>
+
+                    <div class="login-input">
+
+                        <span class="input-icon">
+                            ✉
+                        </span>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
                 </div>
 
-                <h2>Candidate Sign In</h2>
 
-                <p class="login-description">
-                    Enter your registered credentials to begin.
-                </p>
+                <!-- PASSWORD -->
 
-                {% if error %}
-                <div class="login-error">
-                    {{ error }}
+                <div class="login-field">
+
+                    <div class="password-header">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <a href="#">
+                            Forgot password?
+                        </a>
+
+                    </div>
+
+
+                    <div class="login-input">
+
+                        <span class="input-icon">
+                            🔒
+                        </span>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            onclick="togglePassword()"
+                        >
+                            Show
+                        </button>
+
+                    </div>
+
                 </div>
-                {% endif %}
 
 
-                <form method="POST" action="{{ url_for('login') }}">
+                <!-- REMEMBER -->
 
-                    <!-- EMAIL -->
-                    <div class="login-field">
+                <div class="remember-row">
 
-                        <label for="email">
-                            Email address
-                        </label>
+                    <label>
 
-                        <div class="input-wrapper">
+                        <input
+                            type="checkbox"
+                            name="remember"
+                        >
 
-                            <span class="input-icon">
-                                ✉
-                            </span>
+                        Remember me
 
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                placeholder="you@example.com"
-                                autocomplete="email"
-                                required
-                            >
+                    </label>
 
-                        </div>
-
-                    </div>
+                </div>
 
 
-                    <!-- PASSWORD -->
-                    <div class="login-field">
+                <!-- BUTTON -->
 
-                        <div class="password-label">
-
-                            <label for="password">
-                                Password
-                            </label>
-
-                            <a href="#">
-                                Forgot password?
-                            </a>
-
-                        </div>
-
-                        <div class="input-wrapper">
-
-                            <span class="input-icon">
-                                🔒
-                            </span>
-
-                            <input
-                                type="password"
-                                id="password"
-                                name="password"
-                                placeholder="Enter your password"
-                                autocomplete="current-password"
-                                required
-                            >
-
-                            <button
-                                type="button"
-                                class="password-toggle"
-                                onclick="togglePassword()"
-                                aria-label="Show password"
-                            >
-                                👁
-                            </button>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- REMEMBER -->
-                    <div class="remember-row">
-
-                        <label class="remember-label">
-
-                            <input
-                                type="checkbox"
-                                name="remember"
-                            >
-
-                            <span>
-                                Remember me
-                            </span>
-
-                        </label>
-
-                    </div>
-
-
-                    <!-- LOGIN BUTTON -->
-                    <button
-                        type="submit"
-                        class="login-submit"
-                    >
-                        <span>Sign In</span>
-                        <span class="arrow">→</span>
-                    </button>
-
-                </form>
-
-
-                <!-- REGISTER -->
-                <div class="register-prompt">
+                <button
+                    type="submit"
+                    class="login-submit"
+                >
 
                     <span>
-                        Don't have an account?
+                        Sign In
                     </span>
 
-                    <a href="{{ url_for('register') }}">
-                        Create an account
-                    </a>
+                    <span>
+                        →
+                    </span>
 
+                </button>
+
+            </form>
+
+
+            <!-- SECURITY -->
+
+            <div class="security-box">
+
+                <div class="security-icon">
+                    ✓
                 </div>
 
+                <div>
 
-                <div class="login-footer">
-                    Your examination session is monitored for security.
+                    <strong>
+                        Secure examination session
+                    </strong>
+
+                    <p>
+                        Your session is protected and monitored
+                        for examination integrity.
+                    </p>
+
                 </div>
 
             </div>
 
+
         </div>
 
-    </div>
+    </section>
 
 </div>
 
@@ -220,15 +340,16 @@ function togglePassword() {
     const button =
         document.querySelector(".password-toggle");
 
+
     if (password.type === "password") {
 
         password.type = "text";
-        button.textContent = "🙈";
+        button.textContent = "Hide";
 
     } else {
 
         password.type = "password";
-        button.textContent = "👁";
+        button.textContent = "Show";
 
     }
 
@@ -236,4 +357,6 @@ function togglePassword() {
 
 </script>
 
-{% endblock %}
+</body>
+
+</html>

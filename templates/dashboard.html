@@ -4,306 +4,382 @@
 
 {% block content %}
 
-<div class="dashboard-page">
+<div class="eg-dashboard">
 
-    <!-- TOP HEADER -->
-    <div class="dashboard-header">
+    <!-- SIDEBAR -->
+    <aside class="eg-sidebar">
 
-        <div>
-            <p class="dashboard-label">CANDIDATE DASHBOARD</p>
-            <h1>Welcome back, {{ candidate.name }}</h1>
-            <p class="dashboard-subtitle">
-                Manage your examination session and view your recent activity.
-            </p>
+        <div class="eg-brand">
+            <div class="eg-brand-icon">✓</div>
+            <div>
+                <strong>ExamGuard</strong>
+                <span>Secure Assessment</span>
+            </div>
         </div>
 
-        <div class="dashboard-status">
-            <span class="status-dot"></span>
-            System ready
-        </div>
+        <nav class="eg-nav">
 
-    </div>
+            <a href="{{ url_for('dashboard') }}" class="eg-nav-item active">
+                <span>⌂</span>
+                Dashboard
+            </a>
 
+            <a href="#profile" class="eg-nav-item">
+                <span>◉</span>
+                My Profile
+            </a>
 
-    <!-- PROFILE + EXAM CARD -->
-    <div class="dashboard-main-grid">
+            <a href="#security" class="eg-nav-item">
+                <span>♢</span>
+                Security
+            </a>
 
-        <!-- PROFILE CARD -->
-        <div class="profile-card">
+        </nav>
 
-            <div class="profile-card-header">
-                <span class="card-label">YOUR PROFILE</span>
+        <div class="eg-sidebar-bottom">
+
+            <div class="eg-help">
+                <span class="eg-help-icon">?</span>
+                <div>
+                    <strong>Need help?</strong>
+                    <small>Check your camera before starting.</small>
+                </div>
             </div>
 
-            <div class="profile-content">
+        </div>
 
-                <div class="candidate-photo-wrapper">
+    </aside>
 
-                    {% if candidate.photo_path %}
+
+    <!-- MAIN -->
+    <main class="eg-main">
+
+        <!-- TOP BAR -->
+        <header class="eg-topbar">
+
+            <div>
+                <span class="eg-breadcrumb">Dashboard</span>
+                <h1>Candidate Dashboard</h1>
+            </div>
+
+            <div class="eg-user">
+
+                {% if candidate.photo_path %}
 
                     <img
                         src="{{ url_for('static', filename=candidate.photo_path) }}"
-                        alt="Candidate photo"
-                        class="candidate-photo"
+                        alt="Candidate"
                     >
 
-                    {% else %}
+                {% else %}
 
-                    <div class="candidate-photo-placeholder">
+                    <div class="eg-avatar">
                         {{ candidate.name[0]|upper }}
                     </div>
 
-                    {% endif %}
+                {% endif %}
 
-                    <span class="verified-badge">✓</span>
+                <div>
+                    <strong>{{ candidate.name }}</strong>
+                    <span>Candidate</span>
+                </div>
+
+                <span class="eg-online"></span>
+
+            </div>
+
+        </header>
+
+
+        <!-- WELCOME -->
+        <section class="eg-welcome">
+
+            <div>
+
+                <span class="eg-eyebrow">
+                    EXAMINATION PORTAL
+                </span>
+
+                <h2>
+                    Welcome back, {{ candidate.name.split(' ')[0] }} 👋
+                </h2>
+
+                <p>
+                    Everything is ready. Review your examination
+                    environment before you begin.
+                </p>
+
+            </div>
+
+            <div class="eg-ready">
+
+                <span class="eg-ready-dot"></span>
+
+                System Ready
+
+            </div>
+
+        </section>
+
+
+        <!-- STAT CARDS -->
+        <section class="eg-stats">
+
+            <div class="eg-stat">
+
+                <div class="eg-stat-icon blue">
+                    ✓
+                </div>
+
+                <div>
+                    <span>Account</span>
+                    <strong>Verified</strong>
+                </div>
+
+            </div>
+
+
+            <div class="eg-stat">
+
+                <div class="eg-stat-icon green">
+                    ◉
+                </div>
+
+                <div>
+                    <span>Camera</span>
+                    <strong>Ready</strong>
+                </div>
+
+            </div>
+
+
+            <div class="eg-stat">
+
+                <div class="eg-stat-icon purple">
+                    ♢
+                </div>
+
+                <div>
+                    <span>Monitoring</span>
+                    <strong>Active</strong>
+                </div>
+
+            </div>
+
+
+            <div class="eg-stat">
+
+                <div class="eg-stat-icon orange">
+                    ⏱
+                </div>
+
+                <div>
+                    <span>Session</span>
+                    <strong>Secure</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MAIN GRID -->
+        <section class="eg-content-grid">
+
+
+            <!-- EXAM CARD -->
+            <div class="eg-exam-card">
+
+                <div class="eg-exam-header">
+
+                    <div>
+
+                        <span class="eg-small-label">
+                            NEXT ACTION
+                        </span>
+
+                        <h3>Ready to start your examination?</h3>
+
+                        <p>
+                            Your camera and browser activity will be
+                            monitored throughout the examination.
+                        </p>
+
+                    </div>
+
+                    <div class="eg-shield">
+                        ✓
+                    </div>
 
                 </div>
 
 
-                <h2>{{ candidate.name }}</h2>
+                <div class="eg-checklist">
 
-                <p class="candidate-email">
+                    <div class="eg-check">
+                        <span>✓</span>
+                        <div>
+                            <strong>Identity verified</strong>
+                            <small>Your candidate profile is verified.</small>
+                        </div>
+                    </div>
+
+
+                    <div class="eg-check">
+                        <span>✓</span>
+                        <div>
+                            <strong>Camera monitoring</strong>
+                            <small>Your camera will remain active.</small>
+                        </div>
+                    </div>
+
+
+                    <div class="eg-check">
+                        <span>✓</span>
+                        <div>
+                            <strong>Browser monitoring</strong>
+                            <small>Tab switching will be monitored.</small>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <a
+                    href="{{ url_for('start_exam') }}"
+                    class="eg-start-button"
+                >
+                    Start Examination
+                    <span>→</span>
+                </a>
+
+
+                <p class="eg-exam-note">
+                    Make sure you are in a quiet place and your camera
+                    is available before starting.
+                </p>
+
+            </div>
+
+
+            <!-- PROFILE CARD -->
+            <div class="eg-profile-card" id="profile">
+
+                <div class="eg-profile-heading">
+
+                    <div>
+                        <span class="eg-small-label">
+                            CANDIDATE
+                        </span>
+
+                        <h3>Your Profile</h3>
+                    </div>
+
+                    <span class="eg-verified">
+                        ✓ Verified
+                    </span>
+
+                </div>
+
+
+                <div class="eg-profile-photo">
+
+                    {% if candidate.photo_path %}
+
+                        <img
+                            src="{{ url_for('static', filename=candidate.photo_path) }}"
+                            alt="Candidate photo"
+                        >
+
+                    {% else %}
+
+                        <div class="eg-large-avatar">
+                            {{ candidate.name[0]|upper }}
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <h4>{{ candidate.name }}</h4>
+
+                <p class="eg-email">
                     {{ candidate.email }}
                 </p>
 
-                <div class="profile-divider"></div>
 
-                <div class="profile-item">
-
-                    <span class="profile-icon">✓</span>
+                <div class="eg-profile-details">
 
                     <div>
-                        <small>Account status</small>
-                        <strong>Verified</strong>
+                        <span>Account status</span>
+                        <strong>
+                            <i class="status-green"></i>
+                            Verified
+                        </strong>
                     </div>
 
-                </div>
-
-                <div class="profile-item">
-
-                    <span class="profile-icon">◉</span>
 
                     <div>
-                        <small>Exam monitoring</small>
-                        <strong>Enabled</strong>
+                        <span>Exam monitoring</span>
+                        <strong>
+                            <i class="status-green"></i>
+                            Enabled
+                        </strong>
                     </div>
 
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- START EXAM CARD -->
-        <div class="exam-start-card">
-
-            <div class="exam-card-top">
-
-                <div class="exam-icon">
-                    ✦
-                </div>
-
-                <span class="ready-badge">
-                    READY
-                </span>
-
-            </div>
-
-            <h2>Ready for your examination?</h2>
-
-            <p>
-                Your camera and browser activity will be monitored
-                throughout the examination to maintain a secure
-                and fair environment.
-            </p>
-
-
-            <div class="exam-info-row">
-
-                <div class="exam-info">
-
-                    <span class="info-icon">◷</span>
 
                     <div>
-                        <small>Session</small>
-                        <strong>Secure</strong>
-                    </div>
-
-                </div>
-
-                <div class="exam-info">
-
-                    <span class="info-icon">◉</span>
-
-                    <div>
-                        <small>Monitoring</small>
-                        <strong>Active</strong>
+                        <span>Security level</span>
+                        <strong>High</strong>
                     </div>
 
                 </div>
 
             </div>
 
-
-            <a
-                href="{{ url_for('start_exam') }}"
-                class="start-exam-btn"
-            >
-                Start Examination
-                <span>→</span>
-            </a>
-
-            <p class="exam-note">
-                Make sure your camera is available before starting.
-            </p>
-
-        </div>
-
-    </div>
+        </section>
 
 
-    <!-- RECENT SESSIONS
-    <div class="sessions-card">
+        <!-- SECURITY -->
+        <section class="eg-security" id="security">
 
-        <div class="sessions-header">
-
-            <div>
-                <span class="card-label">EXAM HISTORY</span>
-                <h2>Recent sessions</h2>
+            <div class="eg-security-icon">
+                🔒
             </div>
 
-            <span class="session-count">
-                {% if recent_sessions %}
-                    {{ recent_sessions|length }} session{% if recent_sessions|length != 1 %}s{% endif %}
-                {% else %}
-                    0 sessions
-                {% endif %}
+            <div class="eg-security-text">
+
+                <strong>
+                    Secure examination environment
+                </strong>
+
+                <p>
+                    Stay visible to the camera and avoid switching
+                    browser tabs or windows during the examination.
+                </p>
+
+            </div>
+
+            <span class="eg-security-status">
+                Protected
             </span>
 
-        </div>
+        </section>
 
 
-        {% if recent_sessions %}
+        <!-- FOOTER -->
+        <footer class="eg-footer">
 
-        <div class="sessions-table-wrapper">
+            <span>ExamGuard © 2026</span>
 
-            <table class="sessions-table">
+            <span>
+                Secure • Monitored • Fair
+            </span>
 
-                <thead>
+        </footer>
 
-                    <tr>
-                        <th>SESSION</th>
-                        <th>STATUS</th>
-                        <th>STARTED</th>
-                        <th>SUBMITTED</th>
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    {% for session in recent_sessions %}
-
-                    <tr>
-
-                        <td>
-                            <div class="session-id">
-                                <span class="session-icon">#</span>
-                                {{ session["session_id"][:12] }}...
-                            </div>
-                        </td>
-
-                        <td>
-
-                            {% if session["status"] == "submitted" %}
-
-                            <span class="session-status submitted">
-                                Submitted
-                            </span>
-
-                            {% elif session["status"] == "paused" %}
-
-                            <span class="session-status paused">
-                                Paused
-                            </span>
-
-                            {% else %}
-
-                            <span class="session-status progress">
-                                In progress
-                            </span>
-
-                            {% endif %}
-
-                        </td>
-
-                        <td>
-                            {{ session["started_at"] }}
-                        </td>
-
-                        <td>
-
-                            {% if session["submitted_at"] %}
-                                {{ session["submitted_at"] }}
-                            {% else %}
-                                <span class="not-submitted">—</span>
-                            {% endif %}
-
-                        </td>
-
-                    </tr>
-
-                    {% endfor %}
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-        {% else %}
-
-        <div class="empty-sessions">
-
-            <div class="empty-icon">
-                ◷
-            </div>
-
-            <h3>No examination sessions yet</h3>
-
-            <p>
-                Your completed and active examination sessions
-                will appear here.
-            </p>
-
-        </div>
-
-        {% endif %}
-
-    </div> -->
-
-
-    <!-- SECURITY NOTICE -->
-    <div class="security-notice">
-
-        <div class="security-notice-icon">
-            🔒
-        </div>
-
-        <div>
-
-            <strong>Secure examination environment</strong>
-
-            <p>
-                ExamGuard uses camera and browser monitoring during
-                examinations. Please remain in front of the camera
-                and avoid switching tabs or windows.
-            </p>
-
-        </div>
-
-    </div>
+    </main>
 
 </div>
 

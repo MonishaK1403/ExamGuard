@@ -1632,31 +1632,27 @@ document.addEventListener(
 ===================================================== */
 
 const pauseBtn =
-    document.getElementById(
-        "pauseBtn"
-    );
-    document.getElementById("saveAnswerBtn")
-    .addEventListener("click", saveAnswer);
+    document.getElementById("pauseBtn");
 
+const previousBtn =
+    document.getElementById("previousBtn");
+
+const saveAnswerBtn =
+    document.getElementById("saveAnswerBtn");
+
+const nextBtn =
+    document.getElementById("nextBtn");
 
 const resumeBtn =
-    document.getElementById(
-        "resumeBtn"
-    );
+    document.getElementById("resumeBtn");
 
 
-const submitBtn =
-    document.getElementById(
-        "submitBtn"
-    );
+// Question navigation buttons
+previousBtn.addEventListener("click", previousQuestion);
 
+saveAnswerBtn.addEventListener("click", saveAnswer);
 
-const sessionBadge =
-    document.getElementById(
-        "session-badge"
-    );
-
-
+nextBtn.addEventListener("click", nextQuestion);
 
 /* =====================================================
    PAUSE EXAM
